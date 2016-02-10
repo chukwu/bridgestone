@@ -1,0 +1,49 @@
+﻿@model bridgestone.Models.subservice
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SUB SERVICE</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ssid)
+        @Html.HiddenFor(model => model.enteredby)
+        @Html.HiddenFor(model => model.createdwhen)
+        @Html.HiddenFor(model => model.sid)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.servicename, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.servicename, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.servicename, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Services</label>
+            <div class="col-md-10">
+                @Html.DropDownList("sid", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

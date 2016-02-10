@@ -1,0 +1,120 @@
+﻿@model IEnumerable<bridgestone.Models.job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.regno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datelastvisit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.milage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.details)
+            </th>
+            <th>Entry Date</th>
+            <th>Entered By</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string services = item.service;
+            string[] eachservice = services.Split(new char[] { ',' }, StringSplitOptions.None);
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.regno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datelastvisit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.milage)
+                </td>
+                <td>
+                    @foreach (var itms in eachservice)
+                    {
+                        string[] thedata = itms.Split(new char[] { '★' }, StringSplitOptions.None);
+                        <p style="color: green;"><em><i style="color: black;">Main Service:</i> @thedata[0]</em></p>
+                        <p style="color: red;"><em><i style="color: black;">Sub Service:</i> @thedata[1]</em></p>
+                        <hr />
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.details)
+                </td>
+                <td>@item.createdwhen</td>
+                <td>@item.enteredby</td>
+                <td>
+                    @if (User.IsInRole("Manage Job Cart"))
+                    {
+                        <text>@Html.ActionLink("Edit", "Edit", new { id = item.JobID }) |</text>
+                    }
+                    @Html.ActionLink("Details", "Details", new { id = item.JobID })
+                    @if (User.IsInRole("Manage Job Cart"))
+                    {
+                        <text> | @Html.ActionLink("Delete", "Delete", new { id = item.JobID })</text>
+                    }
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

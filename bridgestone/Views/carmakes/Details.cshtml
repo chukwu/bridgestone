@@ -1,0 +1,38 @@
+﻿@using bridgestone.Models
+@model bridgestone.Models.carmake
+
+@{
+    ViewBag.Title = "Details";
+    MYDBContext db = new MYDBContext();
+    Layout = "~/Views/Shared/_Backend.cshtml";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>carmake</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make)
+        </dd>
+        <dt>
+            CAR MODELS
+        </dt>
+        <dd>
+            @foreach (var sub in db.carmodels.Where(w => w.makeID == Model.makeID))
+            {
+                <p style="color: green;"><em>@sub.modelname</em></p>
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.makeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

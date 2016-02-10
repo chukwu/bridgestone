@@ -1,0 +1,45 @@
+﻿@model IEnumerable<bridgestone.Models.branch>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.branchname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.branchlocation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.branchname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.branchlocation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.bid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.bid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.bid })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

@@ -1,0 +1,137 @@
+﻿@model bridgestone.Models.job
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+    string services = Model.service;
+    string[] eachservice = services.Split(new char[] { ',' }, StringSplitOptions.None);    
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.regno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datelastvisit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datelastvisit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.milage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.milage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service)
+        </dt>
+
+        <dd>
+            @foreach (var itms in eachservice)
+            {
+                string[] thedata = itms.Split(new char[] { '★' }, StringSplitOptions.None);
+                <p style="color: green;"><em><i style="color: black;">Main Service:</i> @thedata[0]</em></p>
+                <p style="color: red;"><em><i style="color: black;">Sub Service:</i> @thedata[1]</em></p>
+                <hr />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.details)
+        </dd>
+
+        <dt>
+            Entery Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdwhen)
+        </dd>
+
+        <dt>
+           Entered By
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enteredby)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

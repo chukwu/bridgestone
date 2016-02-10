@@ -1,0 +1,37 @@
+﻿
+@model bridgestone.Models.carmodel
+
+@{
+    ViewBag.Title = "Details";
+
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CAR MODEL</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.carmakes.make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carmakes.make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modelname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modelname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

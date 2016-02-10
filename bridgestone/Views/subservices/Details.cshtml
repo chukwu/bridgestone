@@ -1,0 +1,35 @@
+﻿@model bridgestone.Models.subservice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>subservice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.services.servicename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.services.servicename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servicename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servicename)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ssid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

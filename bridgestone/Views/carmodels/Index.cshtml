@@ -1,0 +1,46 @@
+﻿@model IEnumerable<bridgestone.Models.carmodel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.carmakes.make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modelname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carmakes.make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modelname)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.mid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.mid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.mid })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
